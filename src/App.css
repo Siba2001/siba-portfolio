@@ -9,8 +9,10 @@
   flex-direction: column;
 }
 
-/* --- Temporary Placeholder Section --- */
-.placeholder-section {
+/* ============================================
+   Hero Section
+   ============================================ */
+.hero-section {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -18,61 +20,240 @@
   min-height: calc(100dvh - var(--navbar-height));
   padding: 2rem;
   text-align: center;
+  background-color: var(--color-bg-primary);
+  position: relative;
+  overflow: hidden;
 }
 
-.placeholder-inner {
+/* Subtle gradient background decoration */
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: -40%;
+  right: -20%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.06) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.hero-section::after {
+  content: '';
+  position: absolute;
+  bottom: -30%;
+  left: -15%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.04) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.hero-inner {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: 1.25rem;
+  position: relative;
+  z-index: 1;
 }
 
-.placeholder-title {
+/* --- Status Badge --- */
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #16a34a;
+  background-color: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  padding: 0.4rem 1rem;
+  border-radius: 50px;
+  animation: fadeInDown 0.6s ease both;
+}
+
+.hero-badge-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #22c55e;
+  border-radius: 50%;
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.3); }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Title --- */
+.hero-title {
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
+  animation: fadeInUp 0.6s ease 0.15s both;
 }
 
-.placeholder-greeting {
-  font-size: 1.2rem;
+.hero-greeting {
+  font-size: 1.1rem;
   font-weight: 400;
   color: var(--color-text-secondary);
   letter-spacing: 1px;
   text-transform: uppercase;
 }
 
-.placeholder-name {
-  font-size: 3.5rem;
+.hero-name {
+  font-size: 3.2rem;
   font-weight: 800;
   letter-spacing: -1px;
-  background: var(--color-accent-gradient);
+  color: var(--color-accent);
+  line-height: 1.1;
+}
+
+/* --- Role --- */
+.hero-role {
+  font-size: 1.1rem;
+  color: var(--color-text-secondary);
+  font-weight: 400;
+  animation: fadeInUp 0.6s ease 0.3s both;
+}
+
+.hero-role-highlight {
+  font-weight: 700;
+  color: var(--color-text-primary);
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-.placeholder-role {
-  font-size: 1.15rem;
-  color: var(--color-text-secondary);
-  font-weight: 400;
-}
-
-.placeholder-note {
-  margin-top: 1.5rem;
-  font-size: 0.9rem;
+/* --- Tagline --- */
+.hero-tagline {
+  font-size: 1rem;
   color: var(--color-text-muted);
-  padding: 0.6rem 1.4rem;
-  border: 1px solid var(--color-border);
-  border-radius: 50px;
-  background: rgba(0, 229, 255, 0.03);
+  max-width: 520px;
+  line-height: 1.6;
+  animation: fadeInUp 0.6s ease 0.45s both;
 }
 
+/* --- CTA Buttons --- */
+.hero-cta-group {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+  animation: fadeInUp 0.6s ease 0.6s both;
+}
+
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.7rem 1.6rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.hero-cta--primary {
+  background-color: var(--color-accent);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
+}
+
+.hero-cta--primary:hover {
+  background-color: #1d4ed8;
+  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.35);
+  transform: translateY(-2px);
+}
+
+.hero-cta--secondary {
+  background-color: transparent;
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border);
+}
+
+.hero-cta--secondary:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  background-color: #f8faff;
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   Responsive — Mobile
+   ============================================ */
 @media (max-width: 768px) {
-  .placeholder-name {
-    font-size: 2.4rem;
+  .hero-name {
+    font-size: 2.2rem;
   }
 
-  .placeholder-role {
+  .hero-role {
     font-size: 1rem;
   }
+
+  .hero-tagline {
+    font-size: 0.92rem;
+  }
+
+  .hero-cta-group {
+    flex-direction: column;
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .hero-cta {
+    justify-content: center;
+  }
+}
+
+/* ============================================
+   Dark Theme Overrides
+   ============================================ */
+[data-theme='dark'] .hero-badge {
+  color: #4ade80;
+  background-color: rgba(74, 222, 128, 0.08);
+  border-color: rgba(74, 222, 128, 0.2);
+}
+
+[data-theme='dark'] .hero-badge-dot {
+  background-color: #4ade80;
+}
+
+[data-theme='dark'] .hero-section::before {
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
+}
+
+[data-theme='dark'] .hero-section::after {
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.05) 0%, transparent 70%);
+}
+
+[data-theme='dark'] .hero-cta--primary {
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+}
+
+[data-theme='dark'] .hero-cta--primary:hover {
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.4);
+}
+
+[data-theme='dark'] .hero-cta--secondary:hover {
+  background-color: rgba(59, 130, 246, 0.08);
+}
+
+[data-theme='dark'] .hero-role-highlight {
+  background: linear-gradient(135deg, #3b82f6, #60a5fa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }

@@ -1,4 +1,5 @@
 import Navbar from './components/Navbar/Navbar';
+import About from './components/About/About';
 import './App.css';
 
 function App() {
@@ -6,20 +7,36 @@ function App() {
     <>
       <Navbar />
       <main className="main-content">
-        {/* Future sections: Home, About, Skills, Projects, Contact */}
-        <section id="home" className="placeholder-section">
-          <div className="placeholder-inner">
-            <h1 className="placeholder-title">
-              <span className="placeholder-greeting">Hello, I'm</span>
-              <span className="placeholder-name">Siba Sethy</span>
+        {/* Hero Section */}
+        <section id="home" className="hero-section">
+          <div className="hero-inner">
+            <div className="hero-badge">
+              <span className="hero-badge-dot"></span>
+              Currently working at TechVizor
+            </div>
+            <h1 className="hero-title">
+              <span className="hero-greeting">Hello, I'm</span>
+              <span className="hero-name">Siba Sethy</span>
             </h1>
-            <p className="placeholder-role">Software Developer Engineer | Java Backend Developer</p>
-            <p className="placeholder-note">🚧 Portfolio sections coming soon...</p>
+            <p className="hero-role">
+              Software Developer Engineer | Java Backend Developer | <span className="hero-role-highlight">Automation</span>
+            </p>
+            <p className="hero-tagline">
+              Passionate about building robust backend systems, web applications, and test automation.
+            </p>
+            <div className="hero-cta-group">
+              <a href="#about" className="hero-cta hero-cta--primary">Learn More About Me</a>
+              <a href="#contact" className="hero-cta hero-cta--secondary">Get in Touch</a>
+            </div>
           </div>
         </section>
+
+        {/* About Section */}
+        <About />
       </main>
     </>
   );
 }
 
 export default App;
+

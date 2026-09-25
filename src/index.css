@@ -1,33 +1,36 @@
 /* ============================================
-   Global Styles — Dark Portfolio Theme
+   Global Styles — Light Portfolio Theme
    ============================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-  /* Color palette */
-  --color-bg-primary: #0a0a14;
-  --color-bg-secondary: #0f0f1a;
-  --color-bg-card: rgba(15, 15, 30, 0.8);
-  --color-text-primary: #e0e0e8;
-  --color-text-secondary: #8a8fa0;
-  --color-text-muted: #5a5f72;
-  --color-accent: #00e5ff;
-  --color-accent-alt: #2979ff;
-  --color-accent-gradient: linear-gradient(135deg, #00e5ff, #2979ff);
-  --color-border: rgba(255, 255, 255, 0.06);
+  /* Color palette — Light theme */
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f7f8fa;
+  --color-text-primary: #1a1a2e;
+  --color-text-secondary: #555555;
+  --color-text-muted: #888888;
+  --color-accent: #2563eb;
+  --color-border: #e8e8e8;
 
   /* Typography */
   --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --font-mono: ui-monospace, 'Cascadia Code', Consolas, monospace;
 
   /* Spacing */
-  --navbar-height: 72px;
+  --navbar-height: 68px;
+}
 
-  /* Transitions */
-  --transition-fast: 0.2s ease;
-  --transition-normal: 0.3s ease;
-  --transition-smooth: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+/* Dark Theme */
+[data-theme='dark'] {
+  --color-bg-primary: #0f1117;
+  --color-bg-secondary: #181a20;
+  --color-text-primary: #e8e8ef;
+  --color-text-secondary: #a0a0b0;
+  --color-text-muted: #6b6b7b;
+  --color-accent: #3b82f6;
+  --color-border: #2a2d35;
 }
 
 *,
@@ -53,6 +56,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 #root {
@@ -76,32 +80,14 @@ img {
   display: block;
 }
 
-/* Scrollbar styling */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--color-bg-primary);
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(0, 229, 255, 0.2);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 229, 255, 0.35);
-}
-
 /* Selection styling */
 ::selection {
-  background: rgba(0, 229, 255, 0.25);
-  color: #fff;
+  background: rgba(37, 99, 235, 0.15);
+  color: #1a1a2e;
 }
 
 @media (max-width: 768px) {
   :root {
-    --navbar-height: 64px;
+    --navbar-height: 60px;
   }
 }
