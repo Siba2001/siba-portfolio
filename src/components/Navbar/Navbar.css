@@ -32,6 +32,7 @@
   font-weight: 700;
   color: var(--color-text-primary);
   letter-spacing: -0.3px;
+  white-space: nowrap;
 }
 
 .navbar__brand-accent {

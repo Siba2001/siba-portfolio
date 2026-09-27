@@ -1,5 +1,6 @@
 import Navbar from './components/Navbar/Navbar';
 import About from './components/About/About';
+import Skills from './components/Skills/Skills';
 import './App.css';
 
 function App() {
@@ -33,6 +34,9 @@ function App() {
 
         {/* About Section */}
         <About />
+
+        {/* Skills Section */}
+        <Skills />
       </main>
     </>
   );
