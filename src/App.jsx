@@ -1,6 +1,7 @@
 import Navbar from './components/Navbar/Navbar';
 import About from './components/About/About';
 import Skills from './components/Skills/Skills';
+import Projects from './components/Projects/Projects';
 import './App.css';
 
 function App() {
@@ -37,6 +38,9 @@ function App() {
 
         {/* Skills Section */}
         <Skills />
+
+        {/* Projects Section */}
+        <Projects />
       </main>
     </>
   );
