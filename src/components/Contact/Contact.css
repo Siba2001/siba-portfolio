@@ -397,3 +397,21 @@ a.contact__card-value:hover {
     padding: 1.5rem;
   }
 }
+
+
+/* WhatsApp Icon & Link Styling */
+.contact__icon-box--whatsapp {
+  background-color: rgba(37, 211, 102, 0.12) !important;
+  color: #25d366 !important;
+}
+
+.contact__success-link {
+  color: #10b981;
+  font-weight: 600;
+  text-decoration: underline;
+  margin-left: 4px;
+}
+
+.contact__success-link:hover {
+  color: #059669;
+}

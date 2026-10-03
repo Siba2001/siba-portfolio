@@ -12,10 +12,13 @@ function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [lastWhatsAppUrl, setLastWhatsAppUrl] = useState('');
 
   const contactData = {
     email: 'sibasethy10032001@gmail.com',
-    location: 'Surat, Gujarat, India',
+    phone: '+91 9777069513',
+    whatsappNumber: '919777069513',
+    location: 'Digapahandi, Odisha, India',
     github: 'https://github.com/Siba2001',
     linkedin: 'https://www.linkedin.com/in/siba-sethy',
   };
@@ -37,13 +40,29 @@ function Contact() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Provide friendly simulated send feedback
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitted(true);
-      setFormData({ name: '', email: '', subject: '', message: '' });
-      setTimeout(() => setSubmitted(false), 6000);
-    }, 1000);
+    const name = formData.name.trim();
+    const email = formData.email.trim();
+    const subject = formData.subject.trim();
+    const message = formData.message.trim();
+
+    // Format clean WhatsApp message text
+    const textMessage = 
+      `*Hello Siba!* 👋\n\n` +
+      `*Name:* ${name}\n` +
+      `*Email:* ${email}\n` +
+      `*Subject:* ${subject}\n\n` +
+      `*Message:*\n${message}`;
+
+    const whatsappUrl = `https://wa.me/${contactData.whatsappNumber}?text=${encodeURIComponent(textMessage)}`;
+    setLastWhatsAppUrl(whatsappUrl);
+
+    // Open WhatsApp in a new tab
+    window.open(whatsappUrl, '_blank');
+
+    setIsSubmitting(false);
+    setSubmitted(true);
+    setFormData({ name: '', email: '', subject: '', message: '' });
+    setTimeout(() => setSubmitted(false), 8000);
   };
 
   return (
@@ -98,6 +117,27 @@ function Contact() {
               >
                 {copied ? 'Copied! ✓' : 'Copy'}
               </button>
+            </div>
+
+            {/* Direct WhatsApp Card */}
+            <div className="contact__card">
+              <div className="contact__icon-box contact__icon-box--whatsapp">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+                  <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.23 8.23 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.44 0-2.85-.38-4.08-1.1l-.29-.17-3.04.8 1.01-2.96-.19-.3a8.17 8.17 0 0 1-1.25-4.51c0-4.54 3.7-8.24 8.24-8.24m4.53 11.66c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.79.98-.14.17-.29.19-.54.07-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.39-1.72-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.23.25-.86.84-.86 2.06 0 1.21.88 2.39 1.01 2.56.12.17 1.74 2.66 4.21 3.73.59.25 1.05.41 1.41.52.59.19 1.13.16 1.56.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.23-.17-.48-.29z"/>
+                </svg>
+              </div>
+              <div className="contact__card-details">
+                <span className="contact__card-label">WhatsApp</span>
+                <a 
+                  href={`https://wa.me/${contactData.whatsappNumber}`} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="contact__card-value"
+                >
+                  {contactData.phone}
+                </a>
+                <span className="contact__card-subtext">Click to chat directly</span>
+              </div>
             </div>
 
             {/* Location Card */}
@@ -216,22 +256,30 @@ function Contact() {
                 {isSubmitting ? (
                   <>
                     <span className="contact__spinner"></span>
-                    <span>Sending message...</span>
+                    <span>Opening WhatsApp...</span>
                   </>
                 ) : (
                   <>
-                    <span>Send Message</span>
-                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <line x1="22" y1="2" x2="11" y2="13"/>
-                      <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                    {/* WhatsApp Icon */}
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                      <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.23 8.23 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.44 0-2.85-.38-4.08-1.1l-.29-.17-3.04.8 1.01-2.96-.19-.3a8.17 8.17 0 0 1-1.25-4.51c0-4.54 3.7-8.24 8.24-8.24m4.53 11.66c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.79.98-.14.17-.29.19-.54.07-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.39-1.72-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.23.25-.86.84-.86 2.06 0 1.21.88 2.39 1.01 2.56.12.17 1.74 2.66 4.21 3.73.59.25 1.05.41 1.41.52.59.19 1.13.16 1.56.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.23-.17-.48-.29z"/>
                     </svg>
+                    <span>Send Message on WhatsApp</span>
                   </>
                 )}
               </button>
 
               {submitted && (
                 <div className="contact__success-banner">
-                  ✓ Thank you! Your message has been sent successfully. I will get back to you shortly.
+                  ✓ Opening WhatsApp with your message! If it did not open automatically,{' '}
+                  <a 
+                    href={lastWhatsAppUrl} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="contact__success-link"
+                  >
+                    click here to open WhatsApp
+                  </a>.
                 </div>
               )}
             </form>
